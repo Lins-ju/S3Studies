@@ -1,0 +1,10 @@
+{
+    "type": "fruit",
+    "payload": {
+        "productId": "92685432-fd51-11ec-b939-0242ac120002",
+        "productName": "Apple",
+        "fruitAcidity": "",
+        "fruitExternColour": "",
+        "fruitInsideColour": ""
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "YgV4I8LIJc3Nzxg5wRUgU+dskw5vCKaKbP1n9KlD33I=",
+  "Source": "AmazonS3Buckets",
+  "BasePath": "_content/AmazonS3Buckets",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

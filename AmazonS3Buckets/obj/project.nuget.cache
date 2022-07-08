@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "V/fduIsSCevSWm4AzN1YO5WZuVlKYt47coLYJROaUSQCM7i+XW0Oa4UVfNRpH0x7EWN2Z3DQkG1sW0zc1DClEQ==",
+  "success": true,
+  "projectFilePath": "c:\\Users\\JulioLins\\Desktop\\AmazonS3Buckets\\AmazonS3Buckets.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\JulioLins\\.nuget\\packages\\awssdk.core\\3.7.12.4\\awssdk.core.3.7.12.4.nupkg.sha512",
+    "C:\\Users\\JulioLins\\.nuget\\packages\\awssdk.s3\\3.7.9.20\\awssdk.s3.3.7.9.20.nupkg.sha512",
+    "C:\\Users\\JulioLins\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\JulioLins\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\JulioLins\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\JulioLins\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\JulioLins\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\JulioLins\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
