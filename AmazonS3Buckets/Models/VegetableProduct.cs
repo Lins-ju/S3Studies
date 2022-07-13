@@ -13,9 +13,9 @@ namespace AmazonS3Buckets.Models
             IsVegetableARoot = isVegetableARoot;
             VegetableColour = vegetableColour;
         }
-         public VegetableProduct()
-         {
+        public VegetableProduct()
+        {
             
-         }
+        }
     }
 }

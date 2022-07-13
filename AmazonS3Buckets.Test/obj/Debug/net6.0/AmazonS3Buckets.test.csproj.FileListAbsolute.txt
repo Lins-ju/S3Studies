@@ -4,7 +4,6 @@ c:\Users\JulioLins\Desktop\BucketsTesting\AmazonS3Buckets.Test\bin\Debug\net6.0\
 c:\Users\JulioLins\Desktop\BucketsTesting\AmazonS3Buckets.Test\bin\Debug\net6.0\AmazonS3Buckets.runtimeconfig.json
 c:\Users\JulioLins\Desktop\BucketsTesting\AmazonS3Buckets.Test\bin\Debug\net6.0\appsettings.Development.json
 c:\Users\JulioLins\Desktop\BucketsTesting\AmazonS3Buckets.Test\bin\Debug\net6.0\appsettings.json
-c:\Users\JulioLins\Desktop\BucketsTesting\AmazonS3Buckets.Test\bin\Debug\net6.0\Resources\92685432-fd51-11ec-b939-0242ac120002.json
 c:\Users\JulioLins\Desktop\BucketsTesting\AmazonS3Buckets.Test\bin\Debug\net6.0\AmazonS3Buckets.exe
 c:\Users\JulioLins\Desktop\BucketsTesting\AmazonS3Buckets.Test\bin\Debug\net6.0\testhost.exe
 c:\Users\JulioLins\Desktop\BucketsTesting\AmazonS3Buckets.Test\bin\Debug\net6.0\Microsoft.TestPlatform.PlatformAbstractions.dll
@@ -112,3 +111,4 @@ c:\Users\JulioLins\Desktop\BucketsTesting\AmazonS3Buckets.Test\obj\Debug\net6.0\
 c:\Users\JulioLins\Desktop\BucketsTesting\AmazonS3Buckets.Test\obj\Debug\net6.0\ref\AmazonS3Buckets.test.dll
 c:\Users\JulioLins\Desktop\BucketsTesting\AmazonS3Buckets.Test\obj\Debug\net6.0\AmazonS3Buckets.test.pdb
 c:\Users\JulioLins\Desktop\BucketsTesting\AmazonS3Buckets.Test\obj\Debug\net6.0\AmazonS3Buckets.test.genruntimeconfig.cache
+c:\Users\JulioLins\Desktop\BucketsTesting\AmazonS3Buckets.Test\bin\Debug\net6.0\AWSSDK.Extensions.NETCore.Setup.dll

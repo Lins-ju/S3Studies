@@ -2,9 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Amazon.S3;
 using Amazon.S3.Model;
-using Amazon.S3.Util;
 using AmazonS3Buckets.Models;
-using Microsoft.AspNetCore.Mvc;
 
 namespace AmazonS3Buckets.Persistence
 {
@@ -18,12 +16,12 @@ namespace AmazonS3Buckets.Persistence
                 new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
             }
         };
-        private AmazonS3Client _s3Buckets;
-        private string bucketParameter;
-        public S3Datastore(string bucketName)
+        public AmazonS3Client _s3Buckets;
+        public string bucketParameter;
+        public S3Datastore(AmazonS3Client s3Client, string bucketName)
         {
             bucketParameter = bucketName;
-            _s3Buckets = new AmazonS3Client();
+            _s3Buckets = s3Client;
         }
 
         public string ProductSerialized(Product product)
@@ -33,6 +31,7 @@ namespace AmazonS3Buckets.Persistence
             if (product.GetType() == typeof(FruitProduct))
             {
                 var newFruitProduct = (FruitProduct)product;
+                newFruitProduct.FruitAcidity = (int)newFruitProduct.FruitAcidity;
                 string productSerialized = JsonSerializer.Serialize(newFruitProduct, options);
                 return productSerialized;
             }
@@ -52,11 +51,14 @@ namespace AmazonS3Buckets.Persistence
             var putObject = new PutObjectRequest
             {
                 BucketName = bucketParameter,
-                Key = objectKey, 
-                ContentBody = productSerialized
+                Key = objectKey,
+                ContentBody = productSerialized,
+                ContentType = "application/json"
             };
 
+            
             var response = await _s3Buckets.PutObjectAsync(putObject);
+
             return $"Object Key = {objectKey}";
         }
     }

@@ -1,6 +1,8 @@
 using System;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Amazon.Runtime;
+using Amazon.S3;
 using AmazonS3Buckets.Models;
 using AmazonS3Buckets.Persistence;
 using Xunit;
@@ -60,8 +62,17 @@ public class S3Tests
 
     public S3Datastore getRepository()
     {
-        string newBucketName = "order-configs";
-        return new S3Datastore(newBucketName);
-    }
+        var creds = new BasicAWSCredentials("fakeMyKeyId", "fakeSecretAccessKey");
 
+        var clientConfig = new AmazonS3Config
+        {
+            ServiceURL = "http://localhost:4566",
+            AuthenticationRegion = "us-east-1",
+            ForcePathStyle = true
+        };
+
+        var amazonDynamoDbClient = new AmazonS3Client(creds, clientConfig);
+        var newBucketName = "order-configs";
+        return new S3Datastore(amazonDynamoDbClient, newBucketName);
+    }
 }

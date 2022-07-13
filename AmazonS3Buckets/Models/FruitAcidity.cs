@@ -6,6 +6,7 @@ namespace AmazonS3Buckets.Models
     {
         Low = 1,
         Middle = 2, 
-        High = 3 
+        High = 3
     }
+
 }
