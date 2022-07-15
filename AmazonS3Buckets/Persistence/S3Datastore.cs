@@ -11,10 +11,6 @@ namespace AmazonS3Buckets.Persistence
         private readonly JsonSerializerOptions options = new JsonSerializerOptions()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            Converters =
-            {
-                new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
-            }
         };
         public AmazonS3Client _s3Buckets;
         public string bucketParameter;
@@ -26,12 +22,9 @@ namespace AmazonS3Buckets.Persistence
 
         public string ProductSerialized(Product product)
         {
-            FruitProduct fruitProduct = new FruitProduct();
-            VegetableProduct vegetableProduct = new VegetableProduct();
             if (product.GetType() == typeof(FruitProduct))
             {
                 var newFruitProduct = (FruitProduct)product;
-                newFruitProduct.FruitAcidity = (int)newFruitProduct.FruitAcidity;
                 string productSerialized = JsonSerializer.Serialize(newFruitProduct, options);
                 return productSerialized;
             }
@@ -46,6 +39,29 @@ namespace AmazonS3Buckets.Persistence
                 return "Null";
             }
         }
+
+        public Product ProductDeserialized(string serializedFileContent)
+        {
+            var json = JsonDocument.Parse(serializedFileContent);
+            var jsonElement = json.RootElement;
+            var typeOf = jsonElement.GetProperty("type").GetString();
+            var rawText = jsonElement.GetRawText();
+            if (typeOf == "fruit")
+            {
+                var fruitDeserialized = JsonSerializer.Deserialize<FruitProduct>(rawText, options);
+                return fruitDeserialized;
+            }
+            if (typeOf == "vegetable")
+            {
+                var vegetableDeserialized = JsonSerializer.Deserialize<VegetableProduct>(rawText, options);
+                return vegetableDeserialized;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public async Task<string> PostFile(string productSerialized, string objectKey)
         {
             var putObject = new PutObjectRequest
@@ -56,10 +72,23 @@ namespace AmazonS3Buckets.Persistence
                 ContentType = "application/json"
             };
 
-            
-            var response = await _s3Buckets.PutObjectAsync(putObject);
+
+            await _s3Buckets.PutObjectAsync(putObject);
 
             return $"Object Key = {objectKey}";
+        }
+
+        public async Task<string> GetFileContent(string objectKey)
+        {
+            var objectRequest = new GetObjectRequest
+            {
+                BucketName = bucketParameter,
+                Key = objectKey
+            };
+            var getResponse = await _s3Buckets.GetObjectAsync(objectRequest);
+            using var reader = new StreamReader(getResponse.ResponseStream);
+            var fileContent = await reader.ReadToEndAsync();
+            return fileContent;
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lWApsEkTK/dYqI8z9RgJ10gachsyEa0OgZBYmtXfJDcBlV/5JxBCHQdk0FRRpVlIcPzy15mfMAXZMDo1czZMWg==",
+  "dgSpecHash": "9MMRnmb9ghIqJQb4hyDJ+WlKK+wR0JZi/YAvO+Ap/c9cnzw5rkmW/gzaPAles7DWRBV/fNUi5kfvK6RrFkMaLQ==",
   "success": true,
   "projectFilePath": "c:\\Users\\JulioLins\\Desktop\\BucketsTesting\\AmazonS3Buckets.Test\\AmazonS3Buckets.test.csproj",
   "expectedPackageFiles": [

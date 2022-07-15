@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Amazon.Runtime;
@@ -42,11 +44,58 @@ public class S3Tests
         VegetableProduct vegetableProduct = new VegetableProduct(RandomGuid(), RandomGuid(), RandomBool(), RandomGuid());
         return vegetableProduct;
     }
+    public bool isProductEqual(Product product1, Product product2)
+    {
+        if(product1.ProductName != product2.ProductName)
+        {
+            return false;
+        }
+        if(product1.Type != product2.Type)
+        {
+            return false;
+        }
+        if(product1.ProductId != product2.ProductId)
+        {
+            return false;
+        }
+        if(product1.GetType() == typeof(FruitProduct) && product2.GetType() == typeof(FruitProduct))
+        {
+            var fruitProduct1 = (FruitProduct)product1;
+            var fruitProduct2 = (FruitProduct)product2;
+            if(fruitProduct1.FruitAcidity != fruitProduct2.FruitAcidity)
+            {
+                return false;
+            }
+            if(fruitProduct1.FruitExternColour != fruitProduct2.FruitExternColour)
+            {
+                return false;
+            }
+            if(fruitProduct1.FruitInsideColour != fruitProduct2.FruitInsideColour)
+            {
+                return false;
+            }
+        }
+        if(product1.GetType() == typeof(VegetableProduct) && product2.GetType() == typeof(VegetableProduct))
+        {
+            var vegetableProduct1 = (VegetableProduct)product1;
+            var vegetableProduct2 = (VegetableProduct)product2;
+            if(vegetableProduct1.IsVegetableARoot != vegetableProduct2.IsVegetableARoot)
+            {
+                return false;
+            }
+            if(vegetableProduct1.VegetableColour != vegetableProduct2.VegetableColour)
+            {
+                return false;
+            }
+        }
 
+        return true;
+    }
     [Fact]
     public void ProductSerializedWorks()
     {
-        var serializerTest = s3Datastore.ProductSerialized(RandomFruitProduct());
+        var randomFruit = RandomFruitProduct();
+        var serializerTest = s3Datastore.ProductSerialized(randomFruit);
         Assert.NotEqual(serializerTest, "Null");
     }
 
@@ -58,6 +107,25 @@ public class S3Tests
         var serializedProduct = s3Datastore.ProductSerialized(RandomFruitProduct());
         var response = await s3Datastore.PostFile(serializedProduct, objectKey);
         Assert.Equal(response, keyString);
+    }
+
+    [Fact]
+    public async void GetFileContentWorks()
+    {
+        var objectKey = RandomGuid();
+        var serializedProduct = s3Datastore.ProductSerialized(RandomFruitProduct());
+        var response = await s3Datastore.PostFile(serializedProduct, objectKey);
+        var fileContent = await s3Datastore.GetFileContent(objectKey);
+        Assert.NotNull(fileContent);
+    }
+
+    [Fact]
+    public void ProductDeserializedWorks()
+    {
+        var randomFruit = RandomFruitProduct();
+        var fileContent = s3Datastore.ProductSerialized(randomFruit);
+        var productDeserialized = s3Datastore.ProductDeserialized(fileContent);
+        Assert.True(isProductEqual(productDeserialized, randomFruit));
     }
 
     public S3Datastore getRepository()
@@ -76,3 +144,4 @@ public class S3Tests
         return new S3Datastore(amazonDynamoDbClient, newBucketName);
     }
 }
+
